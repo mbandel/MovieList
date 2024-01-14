@@ -9,6 +9,7 @@ object ApiConst {
 
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val NOW_PLAYING = "movie/now_playing"
+    const val DETAILS = "movie/"
 
     const val BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmZhMzUzMGUwODQ3YzdkMDU4YzAxYTk1YzEyZjhlNCIsInN1YiI6IjY1YTA2NjJiYmQ5OTBjMDEyZWVjZGJjYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zd9dZHntRbzlkCkAu8me25gyt7OH4AnNyPyp0OJr9js"
 }

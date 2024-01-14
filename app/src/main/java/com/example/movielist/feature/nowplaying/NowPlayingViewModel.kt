@@ -2,12 +2,11 @@ package com.example.movielist.feature.nowplaying
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movielist.domain.GetNowPlayingMoviesUseCase
+import com.example.movielist.domain.usecase.GetNowPlayingMoviesUseCase
 import com.example.movielist.domain.NowPlayingStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject

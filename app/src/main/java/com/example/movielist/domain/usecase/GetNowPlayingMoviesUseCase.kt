@@ -1,8 +1,8 @@
-package com.example.movielist.domain
+package com.example.movielist.domain.usecase
 
 import com.example.movielist.apiservice.ApiService
+import com.example.movielist.domain.NowPlayingStatus
 import com.example.movielist.feature.nowplaying.model.NowPlayingViewData
-import com.example.movielist.remote.RecentMoviesRemote
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

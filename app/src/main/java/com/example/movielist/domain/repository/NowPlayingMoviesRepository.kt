@@ -1,4 +1,4 @@
-package com.example.movielist.domain
+package com.example.movielist.domain.repository
 
 import com.example.movielist.apiservice.ApiService
 import javax.inject.Inject
