@@ -14,22 +14,22 @@ import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getViewModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.movielist.feature.details.MovieDetailsScreen
 
-data class NowPlayingScreen(val viewModel: NowPlayingViewModel): Screen {
+object NowPlayingScreen: Screen {
     @Composable
     override fun Content() {
-        NowPlayingMoviesComposableScreen(viewModel = viewModel)
+        NowPlayingMoviesComposableScreen(viewModel = getViewModel())
     }
 }
 
@@ -37,7 +37,7 @@ data class NowPlayingScreen(val viewModel: NowPlayingViewModel): Screen {
 private fun NowPlayingMoviesComposableScreen(
     viewModel: NowPlayingViewModel
 ) {
-    val state = viewModel.state.collectAsState()
+    val state = viewModel.state.collectAsStateWithLifecycle()
     val movieList = state.value.nowPlayingMovieList
     val navigator = LocalNavigator.currentOrThrow
 

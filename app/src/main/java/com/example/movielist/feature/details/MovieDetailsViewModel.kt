@@ -19,15 +19,13 @@ class MovieDetailsViewModel @Inject constructor(
     private val _state: MutableStateFlow<MovieDetailsState> = MutableStateFlow(MovieDetailsState())
     val state: StateFlow<MovieDetailsState> = _state
 
-    init {
-        _state.update { it.copy(movieDetailsViewData = MovieDetailsViewData(posterPath = "123")) }
-    }
+
 
     fun getMovieDetails(movieId: Int) {
         viewModelScope.launch {
             getMovieDetailsUseCase(movieId).collect { status ->
                 when(status) {
-                    is MovieDetailsStatus.Success -> _state.update { it.copy(movieDetailsViewData = it.movieDetailsViewData) }
+                    is MovieDetailsStatus.Success -> _state.update { it.copy(movieDetailsViewData = status.movieDetails) }
                     MovieDetailsStatus.ConnectionError -> { _state.update { it.copy(isConnectionError = true) }}
                 }
 
