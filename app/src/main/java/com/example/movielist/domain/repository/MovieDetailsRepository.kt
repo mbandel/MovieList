@@ -20,11 +20,12 @@ class MovieDetailsRepository @Inject constructor(
                 emit(
                     MovieDetailsStatus.Success(
                         movieDetails = MovieDetailsViewData(
-                            posterPath = movieDetailsRemote.posterPath,
+                            id = movieDetailsRemote.id,
+                            backdropPath = movieDetailsRemote.backdropPath,
                             title = movieDetailsRemote.originalTitle,
                             overview = movieDetailsRemote.overview,
                             releaseDate = movieDetailsRemote.releaseDate,
-                            voteAverage = String.format(".2f", movieDetailsRemote.voteAverage)
+                            voteAverage = String.format("%.2f", movieDetailsRemote.voteAverage)
                         )
                     )
                 )
