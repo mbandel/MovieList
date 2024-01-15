@@ -1,5 +1,6 @@
 package com.example.movielist.feature.details
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -89,6 +90,13 @@ private fun MovieDetailsComposableScreen(movieId: Int, viewModel: MovieDetailsVi
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(text = "${stringResource(id = R.string.average_vote)}  ${state.movieDetailsViewData.voteAverage}")
+
+        if (state.isConnectionError) {
+            Toast.makeText(
+                LocalContext.current, stringResource(id = R.string.connection_error),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
     }
 }

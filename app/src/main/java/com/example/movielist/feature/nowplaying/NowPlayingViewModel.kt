@@ -50,11 +50,18 @@ class NowPlayingViewModel @Inject constructor(
                 searchMovieUseCase(state.value.searchQuery).collect { status ->
                     when (status) {
                         is MovieListStatus.Success -> {
-                            _state.update { it.copy(movieInfoList = status.movieInfoViewData) }
+                            _state.update {
+                                it.copy(
+                                    movieInfoList = status.movieInfoViewData,
+                                    isConnectionError = false
+                                )
+                            }
                             checkIfFavorite()
                         }
 
-                        MovieListStatus.ConnectionError -> {}
+                        MovieListStatus.ConnectionError -> {
+                            _state.update { it.copy(isConnectionError = true) }
+                        }
                     }
                 }
             } else {
@@ -71,7 +78,10 @@ class NowPlayingViewModel @Inject constructor(
                         _state.update { it.copy(movieInfoList = status.movieInfoViewData) }
                         checkIfFavorite()
                     }
-                    MovieListStatus.ConnectionError -> {}
+
+                    MovieListStatus.ConnectionError -> {
+                        _state.update { it.copy(isConnectionError = true) }
+                    }
                 }
             }
         }
