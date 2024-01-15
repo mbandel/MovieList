@@ -22,7 +22,7 @@ class MovieDetailsRepository @Inject constructor(
                         movieDetails = MovieDetailsViewData(
                             id = movieDetailsRemote.id,
                             backdropPath = movieDetailsRemote.backdropPath,
-                            title = movieDetailsRemote.originalTitle,
+                            title = movieDetailsRemote.title,
                             overview = movieDetailsRemote.overview,
                             releaseDate = movieDetailsRemote.releaseDate,
                             voteAverage = String.format("%.2f", movieDetailsRemote.voteAverage)
