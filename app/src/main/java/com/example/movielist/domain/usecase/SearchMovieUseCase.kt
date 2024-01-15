@@ -5,10 +5,10 @@ import com.example.movielist.domain.repository.MoviesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetNowPlayingMoviesUseCase @Inject constructor(
+class SearchMovieUseCase @Inject constructor(
     private val moviesRepository: MoviesRepository
-) : () -> Flow<MovieListStatus> {
-    override fun invoke(): Flow<MovieListStatus> {
-        return moviesRepository.getNowPlayingMovies()
+) : (String) -> Flow<MovieListStatus> {
+    override fun invoke(query: String): Flow<MovieListStatus> {
+        return moviesRepository.getSearchedMovies(query)
     }
 }

@@ -33,6 +33,7 @@ import cafe.adriel.voyager.hilt.getViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.movielist.R
+import com.example.movielist.apiservice.ApiConst.BACKDROP_URL
 
 data class MovieDetailsScreen(val movieId: Int) : Screen {
     @Composable
@@ -72,13 +73,21 @@ private fun MovieDetailsComposableScreen(movieId: Int, viewModel: MovieDetailsVi
                 )
             }
         }
+
         Spacer(modifier = Modifier.height(32.dp))
-        PosterImage(posterPath = state.movieDetailsViewData.backdropPath)
+
+        PosterImage(backdropPath = state.movieDetailsViewData.backdropPath)
+
         Spacer(modifier = Modifier.height(42.dp))
+
         Text(text = state.movieDetailsViewData.overview)
+
         Spacer(modifier = Modifier.height(32.dp))
+
         Text(text = "${stringResource(id = R.string.release_date)}  ${state.movieDetailsViewData.releaseDate}")
+
         Spacer(modifier = Modifier.height(32.dp))
+
         Text(text = "${stringResource(id = R.string.average_vote)}  ${state.movieDetailsViewData.voteAverage}")
 
     }
@@ -86,8 +95,8 @@ private fun MovieDetailsComposableScreen(movieId: Int, viewModel: MovieDetailsVi
 
 
 @Composable
-fun PosterImage(posterPath: String) {
-    val imageUrl = "https://image.tmdb.org/t/p/w500$posterPath"
+fun PosterImage(backdropPath: String) {
+    val imageUrl = "$BACKDROP_URL$backdropPath"
     val request = ImageRequest.Builder(LocalContext.current)
         .data(imageUrl)
         .build()

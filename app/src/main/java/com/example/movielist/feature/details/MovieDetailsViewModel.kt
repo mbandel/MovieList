@@ -4,13 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movielist.domain.MovieDetailsStatus
 import com.example.movielist.domain.usecase.AddFavoriteMovieIdUseCase
-import com.example.movielist.domain.usecase.GetFavoriteMovieIds
+import com.example.movielist.domain.usecase.GetFavoriteMovieIdsUseCase
 import com.example.movielist.domain.usecase.GetMovieDetailsUseCase
 import com.example.movielist.domain.usecase.RemoveFavoriteMovieIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,7 +19,7 @@ class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val addFavoriteMovieIdUseCase: AddFavoriteMovieIdUseCase,
     private val removeFavoriteMovieIdUseCase: RemoveFavoriteMovieIdUseCase,
-    private val getFavoriteMovieIds: GetFavoriteMovieIds
+    private val getFavoriteMovieIds: GetFavoriteMovieIdsUseCase
 ): ViewModel() {
 
     private val _state: MutableStateFlow<MovieDetailsState> = MutableStateFlow(MovieDetailsState())

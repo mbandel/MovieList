@@ -1,8 +1,8 @@
 package com.example.movielist.feature.nowplaying
 
-import com.example.movielist.feature.nowplaying.model.NowPlayingViewData
-import com.example.movielist.remote.RecentMoviesRemote
+import com.example.movielist.feature.nowplaying.model.MovieInfoViewData
 
 data class NowPlayingState(
-    val nowPlayingMovieList: List<NowPlayingViewData> = emptyList()
+    val movieInfoList: List<MovieInfoViewData> = emptyList(),
+    val searchQuery: String = ""
 )
