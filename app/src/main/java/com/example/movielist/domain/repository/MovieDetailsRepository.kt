@@ -13,25 +13,28 @@ class MovieDetailsRepository @Inject constructor(
     private val apiService: ApiService
 ) {
     fun getMovieDetails(movieId: Int): Flow<MovieDetailsStatus> = flow {
-        val request = apiService.getMovieDetails(movieId)
-        if (request.isSuccessful) {
-            val movieDetailsRemote = request.body()
-            if (movieDetailsRemote != null) {
-                emit(
-                    MovieDetailsStatus.Success(
-                        movieDetails = MovieDetailsViewData(
-                            id = movieDetailsRemote.id,
-                            backdropPath = movieDetailsRemote.backdropPath,
-                            title = movieDetailsRemote.title,
-                            overview = movieDetailsRemote.overview,
-                            releaseDate = movieDetailsRemote.releaseDate,
-                            voteAverage = String.format("%.2f", movieDetailsRemote.voteAverage)
+        try {
+            val request = apiService.getMovieDetails(movieId)
+            if (request.isSuccessful) {
+                val movieDetailsRemote = request.body()
+                if (movieDetailsRemote != null) {
+                    emit(
+                        MovieDetailsStatus.Success(
+                            movieDetails = MovieDetailsViewData(
+                                id = movieDetailsRemote.id,
+                                backdropPath = movieDetailsRemote.backdropPath,
+                                title = movieDetailsRemote.title,
+                                overview = movieDetailsRemote.overview,
+                                releaseDate = movieDetailsRemote.releaseDate,
+                                voteAverage = String.format("%.2f", movieDetailsRemote.voteAverage)
+                            )
                         )
                     )
-                )
-
+                }
+            } else {
+                emit(MovieDetailsStatus.ConnectionError)
             }
-        } else {
+        } catch (e: Exception) {
             emit(MovieDetailsStatus.ConnectionError)
         }
     }
